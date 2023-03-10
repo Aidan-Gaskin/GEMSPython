@@ -2,6 +2,9 @@
 import tkinter as tk
 from tkinter import ttk
 
+import self as self
+
+
 class GEMS_GUI:
     def init(self):
     # Main Frame

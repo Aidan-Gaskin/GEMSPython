@@ -7,7 +7,7 @@ gems = GEMS()
 # call the createAdministratorObject method with appropriate arguments
 
 
-gems.updateEntry("Administrator","forename","Python","adminID")
+gems.deleteRow("supplier","contactForename","Contact Forename...")
 
 
 

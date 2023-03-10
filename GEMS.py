@@ -187,20 +187,31 @@ class GEMS:
             print(e)
             return None
 ##############################################################################################################
-    def updateEntry(databaseTable, row, newEntry, primaryKey, value):
+    def updateEntry(self, databaseTable, row, newEntry, primaryKey, value):
         try:
-            query = "UPDATE gemsDB." + databaseTable + " SET " + row + " = '" + newEntry + "' WHERE (" + primaryKey + " = '" + value + "');"
-            statement = connection.createStatement()
-            status = statement.executeUpdate(query)
-            if status != 0:
+            query = "UPDATE gemsDB.{0} SET {1} = '{2}' WHERE ({3} = '{4}');".format(databaseTable, row, newEntry, primaryKey, value)
+            cursor = self.connection.cursor()
+            cursor.execute(query)
+            self.connection.commit()
+            if cursor.rowcount > 0:
                 print("\nRecord was updated.")
             else:
                 print("\nRecord not updated.")
         except Exception as e:
             print(e)
-
-
-
+##############################################################################################################
+    def deleteRow(self, databaseTable, row, condition):
+        try:
+            query = "DELETE FROM gemsDB.{0} WHERE ({1} = '{2}');".format(databaseTable, row, condition)
+            cursor = self.connection.cursor()
+            cursor.execute(query)
+            self.connection.commit()
+            if cursor.rowcount > 0:
+                print("\nRecord was deleted.")
+            else:
+                print("\nNo such record.")
+        except Exception as e:
+            print(e)
 
 
 

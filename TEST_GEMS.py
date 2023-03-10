@@ -7,7 +7,7 @@ gems = GEMS()
 # call the createAdministratorObject method with appropriate arguments
 
 
-gems.deleteRow("supplier","contactForename","Contact Forename...")
+gems.deleteRow("Item","description","viyv")
 
 
 

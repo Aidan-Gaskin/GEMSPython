@@ -19,11 +19,12 @@ class GUI:
         if self.crudButtons:
             for but in self.crudButtons:
                 but.destroy()
-        createButton = tk.Button(self.window, text="Create", font=("Ariel", 20), width=12, height=4
-                                 ,command=self.createButtonClicked)
+        createButton = tk.Button(self.window, text="Create", font=("Ariel", 20), width=12, height=4,
+                                 command=self.createButtonClicked)
         updateButton = tk.Button(self.window, text="Update", font=("Ariel", 20), width=12)
         deleteButton = tk.Button(self.window, text="Delete", font=("Ariel", 20), width=12)
-        refreshButton = tk.Button(self.window, text="Refresh", font=("Ariel", 20), width=12)
+        refreshButton = tk.Button(self.window, text="Refresh", font=("Ariel", 20), width=12,
+                                  command=self.refreshButtonClicked)
         self.crudButtons = [createButton, updateButton, deleteButton, refreshButton]
         for but in self.crudButtons:
             but.pack(side="left", fill="both", expand=True, padx=5, pady=5, anchor="nw")
@@ -441,15 +442,24 @@ class GUI:
             cancel_button = tk.Button(create_window, text="Cancel", command=create_window.destroy)
             ok_button.grid(row=6, column=0)
             cancel_button.grid(row=6, column=1)
-
-
-
-
-
-
-
-
-
+    ##REFRESH HANDLER---------------------------------------------------------------------------------------------
+    def refreshButtonClicked(self):
+        print("refresh button clicked")
+        for widget in self.window.winfo_children():
+            if isinstance(widget, ttk.Treeview):
+                widget.destroy()
+        if self.pageNum == 1:
+            self.viewItemButtonClicked()
+        elif self.pageNum == 2:
+            self.viewClientButtonClicked()
+        elif self.pageNum == 3:
+            self.viewAccountManagerButtonClicked()
+        elif self.pageNum == 4:
+            self.viewAdministratorButtonClicked()
+        elif self.pageNum == 5:
+            self.viewOrderButtonClicked()
+        elif self.pageNum == 6:
+            self.viewSupplierButtonClicked()
     ##CREATING INITIAL GUI VIEW---------------------------------------------------------------------------------------------
     def createGUI(self):
         ##creating the buttons & adding handlers.

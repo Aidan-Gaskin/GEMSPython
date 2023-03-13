@@ -59,59 +59,103 @@ class GUI:
             print("create button pressed")
             create_window = tk.Toplevel(self.window)
             create_window.title("Create Item")
-            #
+
+            #LABELS FOR INPUT
+            description_label = tk.Label(create_window, text="Description")
+            supplierID_label = tk.Label(create_window, text="Supplier ID")
+            buyPrice_label = tk.Label(create_window, text="Buy Price")
+            sellPrice_label = tk.Label(create_window, text="Sell Price")
+
+            #INPUT BOXES
             description_input = tk.Entry(create_window)
             supplierID_input = tk.Entry(create_window)
             buyPrice_input = tk.Entry(create_window)
             sellPrice_input = tk.Entry(create_window)
 
+            #COMBINING LABEL AND INPUT BOXES
+            description_label.grid(row=0, column=0)
+            description_input.grid(row=0, column=1)
+            supplierID_label.grid(row=1, column=0)
+            supplierID_input.grid(row=1, column=1)
+            buyPrice_label.grid(row=2, column=0)
+            buyPrice_input.grid(row=2, column=1)
+            sellPrice_label.grid(row=3, column=0)
+            sellPrice_input.grid(row=3, column=1)
+
             #
             def ok_button_clicked():
-                # HERE IS WHERE I WILL CALL THE DATABASE METHODS WITH GIVEN INPUT
+                #************HERE IS WHERE I WILL CALL THE DATABASE METHODS WITH GIVEN INPUT***************
                 input_data = [description_input.get(), supplierID_input.get(), buyPrice_input.get(),
                               sellPrice_input.get()]
                 print("User entered:", input_data)
                 create_window.destroy()
-                #
-
             ok_button = tk.Button(create_window, text="OK", command=ok_button_clicked)
             #
             cancel_button = tk.Button(create_window, text="Cancel", command=create_window.destroy)
             #
-            description_input.pack()
-            supplierID_input.pack()
-            buyPrice_input.pack()
-            sellPrice_input.pack()
-            ok_button.pack()
-            cancel_button.pack()
+            # description_input.pack()
+            # supplierID_input.pack()
+            # buyPrice_input.pack()
+            # sellPrice_input.pack()
+            # ok_button.pack()
+            # cancel_button.pack()
+            ok_button.grid(row=4, column=0)
+            cancel_button.grid(row=4, column=1)
         elif self.pageNum == 2:
-            print("stfu")
-        # print("create button pressed")
-        # create_window = tk.Toplevel(self.window)
-        # create_window.title("Create Item")
-        # #
-        # description_input = tk.Entry(create_window)
-        # supplierID_input = tk.Entry(create_window)
-        # buyPrice_input = tk.Entry(create_window)
-        # sellPrice_input = tk.Entry(create_window)
-        # #
-        # def ok_button_clicked():
-        #     #HERE IS WHERE I WILL CALL THE DATABASE METHODS WITH GIVEN INPUT
-        #     input_data = [description_input.get(), supplierID_input.get(), buyPrice_input.get(), sellPrice_input.get()]
-        #     print("User entered:", input_data)
-        #     create_window.destroy()
-        #     #
-        # ok_button = tk.Button(create_window, text="OK", command=ok_button_clicked)
-        # #
-        # cancel_button = tk.Button(create_window, text="Cancel", command=create_window.destroy)
-        # #
-        # description_input.pack()
-        # supplierID_input.pack()
-        # buyPrice_input.pack()
-        # sellPrice_input.pack()
-        # ok_button.pack()
-        # cancel_button.pack()
+            print("create button pressed")
+            create_window = tk.Toplevel(self.window)
+            create_window.title("Create Client")
 
+            # LABELS FOR INPUT
+            companyName_label = tk.Label(create_window, text="Company Name")
+            address_label = tk.Label(create_window, text="Address")
+            accountManID_label = tk.Label(create_window, text="accountManagerID")
+            forename_label = tk.Label(create_window, text="contactForename")
+            surname_label = tk.Label(create_window, text="contactSurname")
+            email_label = tk.Label(create_window, text="contactEmail")
+            phoneNo_label = tk.Label(create_window, text="contactPhoneNo")
+
+
+            # INPUT BOXES
+            companyName_input = tk.Entry(create_window)
+            address_input = tk.Entry(create_window)
+            accountManID_input = tk.Entry(create_window)
+            forename_input = tk.Entry(create_window)
+            surname_input = tk.Entry(create_window)
+            email_input = tk.Entry(create_window)
+            phoneNo_input = tk.Entry(create_window)
+
+
+            # COMBINING LABEL AND INPUT BOXES
+            companyName_label.grid(row=0, column=0)
+            companyName_input.grid(row=0, column=1)
+            address_label.grid(row=1, column=0)
+            address_input.grid(row=1, column=1)
+            accountManID_label.grid(row=2, column=0)
+            accountManID_input.grid(row=2, column=1)
+            forename_label.grid(row=3, column=0)
+            forename_input.grid(row=3, column=1)
+            surname_label.grid(row=4, column=0)
+            surname_input.grid(row=4, column=1)
+            email_label.grid(row=5, column=0)
+            email_input.grid(row=5, column=1)
+            phoneNo_label.grid(row=6, column=0)
+            phoneNo_input.grid(row=6, column=1)
+
+            #
+            def ok_button_clicked():
+                # ************HERE IS WHERE I WILL CALL THE DATABASE METHODS WITH GIVEN INPUT***************
+                input_data = [companyName_input.get(), address_input.get(), accountManID_input.get(),
+                              forename_input.get(), surname_input.get(), email_input.get(), phoneNo_input.get()]
+                print("User entered:", input_data)
+                create_window.destroy()
+
+            ok_button = tk.Button(create_window, text="OK", command=ok_button_clicked)
+            #
+            cancel_button = tk.Button(create_window, text="Cancel", command=create_window.destroy)
+
+            ok_button.grid(row=7, column=0)
+            cancel_button.grid(row=7, column=1)
 
 
 

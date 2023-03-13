@@ -8,28 +8,48 @@ class GUI:
         self.window = tk.Tk()
         self.window.title("G.E.M.S - Gaskin Enterprise Management System")
         self.window.geometry("900x600")
+        self.crudButtons = [] #this allows the buttons to be destroyed
         ##Probably won't implement fullscreen. When implemented the 3 top buttons don't appear
         #self.window.attributes('-fullscreen', True)
         # myFrame = tk.Frame(self.window, width=900, height=600)
         # myFrame.pack()
 
+    def createCrudButtons(self):
+        print("Creating CRUD buttons")
+        if self.crudButtons:
+            for but in self.crudButtons:
+                but.destroy()
+        createButton = tk.Button(self.window, text="Create", font=("Ariel", 20), width=12, height=4)
+        updateButton = tk.Button(self.window, text="Update", font=("Ariel", 20), width=12)
+        deleteButton = tk.Button(self.window, text="Delete", font=("Ariel", 20), width=12)
+        refreshButton = tk.Button(self.window, text="Refresh", font=("Ariel", 20), width=12)
+        self.crudButtons = [createButton, updateButton, deleteButton, refreshButton]
+        for but in self.crudButtons:
+            but.pack(side="left", fill="both", expand=True, padx=5, pady=5, anchor="nw")
+
     def viewItemButtonClicked(self):
        print("Pressed: View Item")
+       self.createCrudButtons()
 
     def viewClientButtonClicked(self):
        print("Pressed: View Client")
+       self.createCrudButtons()
 
     def viewAccountManagerButtonClicked(self):
        print("Pressed: View AccountManager")
+       self.createCrudButtons()
 
     def viewAdministratorButtonClicked(self):
        print("Pressed: View Administrator")
+       self.createCrudButtons()
 
     def viewOrderButtonClicked(self):
        print("Pressed: View Order")
+       self.createCrudButtons()
 
     def viewSupplierButtonClicked(self):
        print("Pressed: View Supplier")
+       self.createCrudButtons()
 
     def createGUI(self):
         ##creating the buttons & adding handlers.

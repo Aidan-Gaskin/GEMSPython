@@ -1,5 +1,8 @@
 import tkinter as tk
 
+from GEMS import GEMS
+
+
 class GUI:
     def __init__(self):
         self.window = tk.Tk()
@@ -7,6 +10,7 @@ class GUI:
         self.window.geometry("900x600")
         self.crudButtons = [] #this allows the buttons to be destroyed
         self.pageNum = 0
+        self.gems = GEMS()
 
 ##CREATING CRUD BUTTONS-------------------------------------------------------------------------------------------------
     def createCrudButtons(self):
@@ -77,9 +81,8 @@ class GUI:
             sellPrice_input.grid(row=3, column=1)
             def ok_button_clicked():
                 #************HERE IS WHERE I WILL CALL THE DATABASE METHODS WITH GIVEN INPUT***************
-                input_data = [description_input.get(), supplierID_input.get(), buyPrice_input.get(),
-                              sellPrice_input.get()]
-                print("User entered:", input_data)
+                self.gems.createItemObject(description_input.get(), supplierID_input.get(),
+                                      buyPrice_input.get(), sellPrice_input.get())
                 create_window.destroy()
             ok_button = tk.Button(create_window, text="OK", command=ok_button_clicked)
             cancel_button = tk.Button(create_window, text="Cancel", command=create_window.destroy)
@@ -121,10 +124,9 @@ class GUI:
             phoneNo_label.grid(row=6, column=0)
             phoneNo_input.grid(row=6, column=1)
             def ok_button_clicked():
-                # ************HERE IS WHERE I WILL CALL THE DATABASE METHODS WITH GIVEN INPUT***************
-                input_data = [companyName_input.get(), address_input.get(), accountManID_input.get(),
-                              forename_input.get(), surname_input.get(), email_input.get(), phoneNo_input.get()]
-                print("User entered:", input_data)
+                self.gems.createClientObject(companyName_input.get(), address_input.get(), accountManID_input.get(),
+                                             forename_input.get(), surname_input.get(),
+                                             email_input.get(), phoneNo_input.get())
                 create_window.destroy()
             ok_button = tk.Button(create_window, text="OK", command=ok_button_clicked)
             cancel_button = tk.Button(create_window, text="Cancel", command=create_window.destroy)
@@ -150,9 +152,8 @@ class GUI:
             phoneNo_label.grid(row=2, column=0)
             phoneNo_input.grid(row=2, column=1)
             def ok_button_clicked():
-                # ************HERE IS WHERE I WILL CALL THE DATABASE METHODS WITH GIVEN INPUT***************
-                input_data = [forename_input.get(), surname_input.get(), phoneNo_input.get()]
-                print("User entered:", input_data)
+                self.gems.createAccountManagerObject(forename_input.get(), surname_input.get(),
+                                                     phoneNo_input.get())
                 create_window.destroy()
             ok_button = tk.Button(create_window, text="OK", command=ok_button_clicked)
             cancel_button = tk.Button(create_window, text="Cancel", command=create_window.destroy)
@@ -177,9 +178,8 @@ class GUI:
             phoneNo_label.grid(row=2, column=0)
             phoneNo_input.grid(row=2, column=1)
             def ok_button_clicked():
-                # ************HERE IS WHERE I WILL CALL THE DATABASE METHODS WITH GIVEN INPUT***************
-                input_data = [forename_input.get(), surname_input.get(), phoneNo_input.get()]
-                print("User entered:", input_data)
+                self.gems.createAdministratorObject(forename_input.get(), surname_input.get(),
+                                                    phoneNo_input.get())
                 create_window.destroy()
             ok_button = tk.Button(create_window, text="OK", command=ok_button_clicked)
             cancel_button = tk.Button(create_window, text="Cancel", command=create_window.destroy)
@@ -220,10 +220,9 @@ class GUI:
             deliveryAddress_label.grid(row=6, column=0)
             deliveryAddress_input.grid(row=6, column=1)
             def ok_button_clicked():
-                # ************HERE IS WHERE I WILL CALL THE DATABASE METHODS WITH GIVEN INPUT***************
-                input_data = [clientID_input.get(), accountManID_input.get(), itemID_input.get(), quantity_input.get(),
-                               supplierID_input.get(), deliveryAddress_input.get()]
-                print("User entered:", input_data)
+                self.gems.createOrderObject(clientID_input.get(), accountManID_input.get(),adminID_input.get(),
+                                            itemID_input.get(), quantity_input.get(), supplierID_input.get(),
+                                            deliveryAddress_input.get())
                 create_window.destroy()
             ok_button = tk.Button(create_window, text="OK", command=ok_button_clicked)
             cancel_button = tk.Button(create_window, text="Cancel", command=create_window.destroy)
@@ -261,9 +260,8 @@ class GUI:
             phoneNo_input.grid(row=5, column=1)
             def ok_button_clicked():
                 # ************HERE IS WHERE I WILL CALL THE DATABASE METHODS WITH GIVEN INPUT***************
-                input_data = [companyName_input.get(), address_input.get(), forename_input.get(), surname_input.get(),
-                              email_input.get(), phoneNo_input.get()]
-                print("User entered:", input_data)
+                self.gems.createSupplierObject(companyName_input.get(), address_input.get(), forename_input.get(),
+                                               surname_input.get(), email_input.get(), phoneNo_input.get())
                 create_window.destroy()
             ok_button = tk.Button(create_window, text="OK", command=ok_button_clicked)
             cancel_button = tk.Button(create_window, text="Cancel", command=create_window.destroy)

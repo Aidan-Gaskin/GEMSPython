@@ -185,7 +185,7 @@ class GUI:
        supTree.heading("contactPhoneNo", text="contactPhoneNo")
        supTree.column("contactPhoneNo", width=100)
        cursor = GEMS.connection.cursor()
-       cursor.execute("SELECT * FROM Client")
+       cursor.execute("SELECT * FROM Supplier")
        rows = cursor.fetchall()
        for row in rows:
            supTree.insert("", "end", text=row[0], values=row[1:])

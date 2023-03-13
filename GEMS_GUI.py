@@ -38,13 +38,11 @@ class GUI:
        for widget in self.window.winfo_children():
            if isinstance(widget, ttk.Treeview):
                widget.destroy()
-       # Create a treeview widget and add columns
+       # Create a new treeview widget and add columns
        itemTree = ttk.Treeview(self.window)
-       itemTree["columns"] = ("itemID", "description", "supplierID", "buyPrice", "sellPrice")
+       itemTree["columns"] = ("description", "supplierID", "buyPrice", "sellPrice")
        itemTree.heading("#0", text="Item ID")
        itemTree.column("#0", width=100)
-       itemTree.heading("itemID", text="Item ID")
-       itemTree.column("itemID", width=100)
        itemTree.heading("description", text="Description")
        itemTree.column("description", width=300)
        itemTree.heading("supplierID", text="Supplier ID")
@@ -58,30 +56,177 @@ class GUI:
        cursor.execute("SELECT * FROM Item")
        rows = cursor.fetchall()
        for row in rows:
-           itemTree.insert("", "end", text=row[0], values=row[0:])
-       #Centering the table
+           itemTree.insert("", "end", text=row[0], values=row[1:])
+       # Add the treeview widget to the GUI window and center it
        itemTree.place(relx=0.5, rely=0.5, anchor="center")
+
 
     def viewClientButtonClicked(self):
        print("Pressed: View Client")
        self.createCrudButtons()
        self.pageNum = 2
+       # Delete the existing treeview widget
+       for widget in self.window.winfo_children():
+           if isinstance(widget, ttk.Treeview):
+               widget.destroy()
+       # Create a treeview widget and add columns
+       itemTree = ttk.Treeview(self.window)
+       itemTree["columns"] = ("companyName", "address", "accountManagerID", "contactForename",
+                              "contactSurname", "contactEmail", "contactPhoneNo")
+       itemTree.heading("#0", text="clientID")
+       itemTree.column("#0", width=100)
+       itemTree.heading("companyName", text="companyName")
+       itemTree.column("companyName", width=300)
+       itemTree.heading("address", text="address")
+       itemTree.column("address", width=100)
+       itemTree.heading("accountManagerID", text="accountmanagerID")
+       itemTree.column("accountManagerID", width=100)
+       itemTree.heading("contactForename", text="contactForename")
+       itemTree.column("contactForename", width=100)
+       itemTree.heading("contactSurname", text="contactSurname")
+       itemTree.column("contactSurname", width=100)
+       itemTree.heading("contactEmail", text="contactEmail")
+       itemTree.column("contactEmail", width=100)
+       itemTree.heading("contactPhoneNo", text="contactPhoneNo")
+       itemTree.column("contactPhoneNo", width=100)
+
+       # Query the "Item" table and insert the data into the treeview widget
+       cursor = GEMS.connection.cursor()
+       cursor.execute("SELECT * FROM Client")
+       rows = cursor.fetchall()
+       for row in rows:
+           itemTree.insert("", "end", text=row[0], values=row[1:])
+       #Centering the table
+       itemTree.place(relx=0.5, rely=0.5, anchor="center")
+
     def viewAccountManagerButtonClicked(self):
        print("Pressed: View AccountManager")
        self.createCrudButtons()
        self.pageNum = 3
+       # Delete the existing treeview widget
+       for widget in self.window.winfo_children():
+           if isinstance(widget, ttk.Treeview):
+               widget.destroy()
+       # Create a treeview widget and add columns
+       itemTree = ttk.Treeview(self.window)
+       itemTree["columns"] = ("forename", "surname", "phoneNo")
+       itemTree.heading("#0", text="accountManID")
+       itemTree.column("#0", width=100)
+       itemTree.heading("forename", text="forename")
+       itemTree.column("forename", width=300)
+       itemTree.heading("surname", text="surname")
+       itemTree.column("surname", width=100)
+       itemTree.heading("phoneNo", text="phoneNo")
+       itemTree.column("phoneNo", width=100)
+       # Query the "Item" table and insert the data into the treeview widget
+       cursor = GEMS.connection.cursor()
+       cursor.execute("SELECT * FROM AccountManager")
+       rows = cursor.fetchall()
+       for row in rows:
+           itemTree.insert("", "end", text=row[0], values=row[1:])
+       # Centering the table
+       itemTree.place(relx=0.5, rely=0.5, anchor="center")
+
     def viewAdministratorButtonClicked(self):
        print("Pressed: View Administrator")
        self.createCrudButtons()
        self.pageNum = 4
+       # Delete the existing treeview widget
+       for widget in self.window.winfo_children():
+           if isinstance(widget, ttk.Treeview):
+               widget.destroy()
+       # Create a treeview widget and add columns
+       itemTree = ttk.Treeview(self.window)
+       itemTree["columns"] = ("forename", "surname", "phoneNo")
+       itemTree.heading("#0", text="adminID")
+       itemTree.column("#0", width=100)
+       itemTree.heading("forename", text="forename")
+       itemTree.column("forename", width=300)
+       itemTree.heading("surname", text="surname")
+       itemTree.column("surname", width=100)
+       itemTree.heading("phoneNo", text="phoneNo")
+       itemTree.column("phoneNo", width=100)
+       # Query the "Item" table and insert the data into the treeview widget
+       cursor = GEMS.connection.cursor()
+       cursor.execute("SELECT * FROM Administrator")
+       rows = cursor.fetchall()
+       for row in rows:
+           itemTree.insert("", "end", text=row[0], values=row[1:])
+       # Centering the table
+       itemTree.place(relx=0.5, rely=0.5, anchor="center")
+
     def viewOrderButtonClicked(self):
        print("Pressed: View Order")
        self.createCrudButtons()
        self.pageNum = 5
+       # Delete the existing treeview widget
+       for widget in self.window.winfo_children():
+           if isinstance(widget, ttk.Treeview):
+               widget.destroy()
+       # Create a treeview widget and add columns
+       itemTree = ttk.Treeview(self.window)
+       itemTree["columns"] = ("clientID", "accountManID", "adminID", "itemID",
+                              "quantity", "supplierID", "deliveryAddress")
+       itemTree.heading("#0", text="orderID")
+       itemTree.column("#0", width=100)
+       itemTree.heading("clientID", text="clientID")
+       itemTree.column("clientID", width=300)
+       itemTree.heading("accountManID", text="accountManID")
+       itemTree.column("accountManID", width=100)
+       itemTree.heading("adminID", text="adminID")
+       itemTree.column("adminID", width=100)
+       itemTree.heading("itemID", text="itemID")
+       itemTree.column("itemID", width=100)
+       itemTree.heading("quantity", text="quantity")
+       itemTree.column("quantity", width=100)
+       itemTree.heading("supplierID", text="supplierID")
+       itemTree.column("supplierID", width=100)
+       itemTree.heading("deliveryAddress", text="deliveryAddress")
+       itemTree.column("deliveryAddress", width=100)
+
+       # Query the "Item" table and insert the data into the treeview widget
+       cursor = GEMS.connection.cursor()
+       cursor.execute("SELECT * FROM Client")
+       rows = cursor.fetchall()
+       for row in rows:
+           itemTree.insert("", "end", text=row[0], values=row[1:])
+       #Centering the table
+       itemTree.place(relx=0.5, rely=0.5, anchor="center")
     def viewSupplierButtonClicked(self):
        print("Pressed: View Supplier")
        self.createCrudButtons()
        self.pageNum = 6
+       # Delete the existing treeview widget
+       for widget in self.window.winfo_children():
+           if isinstance(widget, ttk.Treeview):
+               widget.destroy()
+       # Create a treeview widget and add columns
+       itemTree = ttk.Treeview(self.window)
+       itemTree["columns"] = ("companyName", "address", "contactForename",
+                              "contactSurname", "contactEmail", "contactPhoneNo")
+       itemTree.heading("#0", text="supplierID")
+       itemTree.column("#0", width=100)
+       itemTree.heading("companyName", text="companyName")
+       itemTree.column("companyName", width=300)
+       itemTree.heading("address", text="address")
+       itemTree.column("address", width=100)
+       itemTree.heading("contactForename", text="contactForename")
+       itemTree.column("contactForename", width=100)
+       itemTree.heading("contactSurname", text="contactSurname")
+       itemTree.column("contactSurname", width=100)
+       itemTree.heading("contactEmail", text="contactEmail")
+       itemTree.column("contactEmail", width=100)
+       itemTree.heading("contactPhoneNo", text="contactPhoneNo")
+       itemTree.column("contactPhoneNo", width=100)
+
+       # Query the "Item" table and insert the data into the treeview widget
+       cursor = GEMS.connection.cursor()
+       cursor.execute("SELECT * FROM Client")
+       rows = cursor.fetchall()
+       for row in rows:
+           itemTree.insert("", "end", text=row[0], values=row[1:])
+       #Centering the table
+       itemTree.place(relx=0.5, rely=0.5, anchor="center")
 
 ##CREATE BUTTON HANDLER-------------------------------------------------------------------------------------------------
     def createButtonClicked(self):

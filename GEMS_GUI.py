@@ -11,7 +11,6 @@ class GUI:
         self.gems = GEMS()
 ##CREATING CRUD BUTTONS-------------------------------------------------------------------------------------------------
     def createCrudButtons(self):
-        print("Creating CRUD buttons")
         if self.crudButtons:
             for but in self.crudButtons:
                 but.destroy()
@@ -28,7 +27,6 @@ class GUI:
             but.pack(side="left", fill="both", expand=True, padx=5, pady=5, anchor="nw")
 ##VIEW BUTTON HANDLERS--------------------------------------------------------------------------------------------------
     def viewItemButtonClicked(self):
-       print("Pressed: View Item")
        self.createCrudButtons()
        #creating a variable to check which page we clicked on to manage the crud operations
        self.pageNum = 1
@@ -58,7 +56,6 @@ class GUI:
        #Center the table
        itemTree.place(relx=0.5, rely=0.5, anchor="center")
     def viewClientButtonClicked(self):
-       print("Pressed: View Client")
        self.createCrudButtons()
        self.pageNum = 2
        for widget in self.window.winfo_children():
@@ -90,7 +87,6 @@ class GUI:
            clientTree.insert("", "end", text=row[0], values=row[1:])
        clientTree.place(relx=0.5, rely=0.5, anchor="center")
     def viewAccountManagerButtonClicked(self):
-       print("Pressed: View AccountManager")
        self.createCrudButtons()
        self.pageNum = 3
        for widget in self.window.winfo_children():
@@ -113,7 +109,6 @@ class GUI:
            accTree.insert("", "end", text=row[0], values=row[1:])
        accTree.place(relx=0.5, rely=0.5, anchor="center")
     def viewAdministratorButtonClicked(self):
-       print("Pressed: View Administrator")
        self.createCrudButtons()
        self.pageNum = 4
        for widget in self.window.winfo_children():
@@ -136,7 +131,6 @@ class GUI:
            adminTree.insert("", "end", text=row[0], values=row[1:])
        adminTree.place(relx=0.5, rely=0.5, anchor="center")
     def viewOrderButtonClicked(self):
-       print("Pressed: View Order")
        self.createCrudButtons()
        self.pageNum = 5
        for widget in self.window.winfo_children():
@@ -168,7 +162,6 @@ class GUI:
            orderTree.insert("", "end", text=row[0], values=row[1:])
        orderTree.place(relx=0.5, rely=0.5, anchor="center")
     def viewSupplierButtonClicked(self):
-       print("Pressed: View Supplier")
        self.createCrudButtons()
        self.pageNum = 6
        for widget in self.window.winfo_children():
@@ -201,7 +194,6 @@ class GUI:
 ##CREATE BUTTON HANDLER-------------------------------------------------------------------------------------------------
     def createButtonClicked(self):
         if self.pageNum == 1:
-            print("create button pressed")
             create_window = tk.Toplevel(self.window)
             create_window.title("Create Item")
             #LABELS FOR INPUT
@@ -232,7 +224,6 @@ class GUI:
             ok_button.grid(row=4, column=0)
             cancel_button.grid(row=4, column=1)
         elif self.pageNum == 2:
-            print("create button pressed")
             create_window = tk.Toplevel(self.window)
             create_window.title("Create Client")
             # LABELS FOR INPUT
@@ -276,7 +267,6 @@ class GUI:
             ok_button.grid(row=7, column=0)
             cancel_button.grid(row=7, column=1)
         elif self.pageNum == 3:
-            print("create button pressed")
             create_window = tk.Toplevel(self.window)
             create_window.title("Create Account Manager")
             # LABELS FOR INPUT
@@ -411,7 +401,6 @@ class GUI:
             cancel_button.grid(row=6, column=1)
     ##REFRESH HANDLER---------------------------------------------------------------------------------------------
     def refreshButtonClicked(self):
-        print("refresh button clicked")
         for widget in self.window.winfo_children():
             if isinstance(widget, ttk.Treeview):
                 widget.destroy()
@@ -429,10 +418,8 @@ class GUI:
             self.viewSupplierButtonClicked()
     ##CREATING INITIAL GUI VIEW---------------------------------------------------------------------------------------------
     def updateButtonClicked(self):
-        print("update button clicked")
         update_window = tk.Toplevel(self.window)
         update_window.title("Update Entry")
-
         # LABELS FOR INPUT
         tableToUpdate_label = tk.Label(update_window, text="Table To Update:")
         fieldToUpdate_label = tk.Label(update_window, text="The Field To Update:")
@@ -445,7 +432,6 @@ class GUI:
         newValue_input = tk.Entry(update_window)
         firstField_input = tk.Entry(update_window)
         firstFieldValue_input = tk.Entry(update_window)
-
         tableToUpdate_label.grid(row=0, column=0)
         tableToUpdate_input.grid(row=0, column=1)
         fieldToUpdate_label.grid(row=1, column=0)
@@ -466,7 +452,6 @@ class GUI:
         cancel_button.grid(row=5, column=1)
     ##CREATING INITIAL GUI VIEW---------------------------------------------------------------------------------------------
     def deleteButtonClicked(self):
-        print("delete button clicked")
         delete_window = tk.Toplevel(self.window)
         delete_window.title("Delete Entry")
         table_label = tk.Label(delete_window, text="Table:")
@@ -511,9 +496,7 @@ class GUI:
         for butt in buttonList:
             butt.pack(side="top",fill="y",expand=True,padx=5,pady=5,anchor="nw")
         self.window.mainloop()
-#call this stuff within the "Main" file later when finalising - Aidan Gaskin
-# gui = GUI()
-# gui.createGUI()
+
 
 
 

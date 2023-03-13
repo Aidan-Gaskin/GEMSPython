@@ -33,17 +33,17 @@ class GUI:
 
     def createGUI(self):
         ##creating the buttons & adding handlers.
-        viewItemButton = tk.Button(self.window, text="View: Item",  height=5, width=8,
+        viewItemButton = tk.Button(self.window,text="View: \nItem",font=("Ariel",20),width=12,
                                    command=self.viewItemButtonClicked)
-        viewClientButton = tk.Button(self.window, text="View: Client", height=5, width=8,
+        viewClientButton = tk.Button(self.window,text="View: \nClient",font=("Ariel",20),width=12,
                                      command=self.viewClientButtonClicked)
-        viewAccountManagerButton = tk.Button(self.window, text="View: AccountManager", height=5, width=8,
+        viewAccountManagerButton = tk.Button(self.window,text="View: \nAccountManager",font=("Ariel",20),width=12,
                                              command=self.viewAccountManagerButtonClicked)
-        viewAdministratorButton = tk.Button(self.window, text="View: Administrator", height=5, width=8,
+        viewAdministratorButton = tk.Button(self.window,text="View: \nAdministrator",font=("Ariel",20),width=12,
                                             command=self.viewAdministratorButtonClicked)
-        viewOrderButton = tk.Button(self.window, text="View: Order", height=5, width=8,
+        viewOrderButton = tk.Button(self.window,text="View: \nOrder",font=("Ariel",20), width=12,
                                     command=self.viewOrderButtonClicked)
-        viewSupplierButton = tk.Button(self.window, text="View: Supplier", height=5, width=8,
+        viewSupplierButton = tk.Button(self.window,text="View: \nSupplier",font=("Ariel",20),width=12,
                                        command=self.viewSupplierButtonClicked)
 
         # Button(win, text="Button-1", height=5, width=10).pack()
@@ -51,15 +51,14 @@ class GUI:
         ##Creating list of the buttons for looping through later on
         buttonList = [viewItemButton,viewClientButton,viewAccountManagerButton,
                       viewAdministratorButton, viewOrderButton, viewSupplierButton]
-        ##Positioning Buttons
-        # for butt in buttonList:
-        #     butt
 
 
 
         ##Packs all buttons to screen in one logic block instead of multiple statements
         for butt in buttonList:
-            butt.pack()
+            butt.pack(side="top",fill="y",expand=True,padx=5,pady=5,anchor="nw")
+
+
         self.window.mainloop()
 
 

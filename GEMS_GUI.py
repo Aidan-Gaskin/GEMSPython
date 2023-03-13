@@ -7,20 +7,20 @@ import self as self
 
 class GEMS_GUI:
     def init(self):
-    # Main Frame
-    self.gems = tk.Tk()
-    self.gems.title("G.E.M.S - Gaskin Enterprise Management System")
-    # Main Frame Menu Bar
-    self.gemsMenuBar = tk.Menu(self.gems)
-    self.gemsMENU = tk.Menu(self.gemsMenuBar, tearoff=0)
-    self.gemsMENU.add_command(label="TBC", command=self.tbc)
-    self.gemsMENU.add_command(label="TBC", command=self.tbc)
-    self.gemsHELP = tk.Menu(self.gemsMenuBar, tearoff=0)
-    self.gemsHELP.add_command(label="TBC", command=self.tbc)
-    self.gemsHELP.add_command(label="TBC", command=self.tbc)
-    self.gemsMenuBar.add_cascade(label="G.E.M.S", menu=self.gemsMENU)
-    self.gemsMenuBar.add_cascade(label="Help", menu=self.gemsHELP)
-    self.gems.config(menu=self.gemsMenuBar)
+
+        self.gems = tk.Tk()
+        self.gems.title("G.E.M.S - Gaskin Enterprise Management System")
+        # Main Frame Menu Bar
+        self.gemsMenuBar = tk.Menu(self.gems)
+        self.gemsMENU = tk.Menu(self.gemsMenuBar, tearoff=0)
+        self.gemsMENU.add_command(label="TBC", command=self.tbc)
+        self.gemsMENU.add_command(label="TBC", command=self.tbc)
+        self.gemsHELP = tk.Menu(self.gemsMenuBar, tearoff=0)
+        self.gemsHELP.add_command(label="TBC", command=self.tbc)
+        self.gemsHELP.add_command(label="TBC", command=self.tbc)
+        self.gemsMenuBar.add_cascade(label="G.E.M.S", menu=self.gemsMENU)
+        self.gemsMenuBar.add_cascade(label="Help", menu=self.gemsHELP)
+        self.gems.config(menu=self.gemsMenuBar)
 
     def tbc(self):
         print("To Be Completed")

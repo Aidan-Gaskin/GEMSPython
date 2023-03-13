@@ -19,7 +19,8 @@ class GUI:
                                  command=self.createButtonClicked)
         updateButton = tk.Button(self.window, text="Update", font=("Ariel", 20), width=12,
                                  command=self.updateButtonClicked)
-        deleteButton = tk.Button(self.window, text="Delete", font=("Ariel", 20), width=12)
+        deleteButton = tk.Button(self.window, text="Delete", font=("Ariel", 20), width=12,
+                                 command=self.deleteButtonClicked)
         refreshButton = tk.Button(self.window, text="Refresh", font=("Ariel", 20), width=12,
                                   command=self.refreshButtonClicked)
         self.crudButtons = [createButton, updateButton, deleteButton, refreshButton]
@@ -463,6 +464,31 @@ class GUI:
         cancel_button = tk.Button(update_window, text="Cancel", command=update_window.destroy)
         ok_button.grid(row=5, column=0)
         cancel_button.grid(row=5, column=1)
+    ##CREATING INITIAL GUI VIEW---------------------------------------------------------------------------------------------
+    def deleteButtonClicked(self):
+        print("delete button clicked")
+        delete_window = tk.Toplevel(self.window)
+        delete_window.title("Delete Entry")
+        table_label = tk.Label(delete_window, text="Table:")
+        field_label = tk.Label(delete_window, text="Field:")
+        value_label = tk.Label(delete_window, text="Value:")
+        table_entry = tk.Entry(delete_window)
+        field_entry = tk.Entry(delete_window)
+        value_entry = tk.Entry(delete_window)
+        table_label.grid(row=0, column=0)
+        table_entry.grid(row=0, column=1)
+        field_label.grid(row=1, column=0)
+        field_entry.grid(row=1, column=1)
+        value_label.grid(row=2, column=0)
+        value_entry.grid(row=2, column=1)
+        def ok_button_clicked():
+            self.gems.deleteRow(table_entry.get(), field_entry.get(), value_entry.get())
+            delete_window.destroy()
+        ok_button = tk.Button(delete_window, text="OK", command=ok_button_clicked)
+        cancel_button = tk.Button(delete_window, text="Cancel", command=delete_window.destroy)
+        ok_button.grid(row=3, column=0)
+        cancel_button.grid(row=3, column=1)
+
     ##CREATING INITIAL GUI VIEW---------------------------------------------------------------------------------------------
     def createGUI(self):
         ##creating the buttons & adding handlers.

@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 
 from GEMS import GEMS
 
@@ -33,6 +34,34 @@ class GUI:
        self.createCrudButtons()
        #creating a variable to check which page we clicked on to manage the crud operations
        self.pageNum = 1
+       # Delete the existing treeview widget
+       for widget in self.window.winfo_children():
+           if isinstance(widget, ttk.Treeview):
+               widget.destroy()
+       # Create a treeview widget and add columns
+       itemTree = ttk.Treeview(self.window)
+       itemTree["columns"] = ("itemID", "description", "supplierID", "buyPrice", "sellPrice")
+       itemTree.heading("#0", text="Item ID")
+       itemTree.column("#0", width=100)
+       itemTree.heading("itemID", text="Item ID")
+       itemTree.column("itemID", width=100)
+       itemTree.heading("description", text="Description")
+       itemTree.column("description", width=300)
+       itemTree.heading("supplierID", text="Supplier ID")
+       itemTree.column("supplierID", width=100)
+       itemTree.heading("buyPrice", text="Buy Price")
+       itemTree.column("buyPrice", width=100)
+       itemTree.heading("sellPrice", text="Sell Price")
+       itemTree.column("sellPrice", width=100)
+       # Query the "Item" table and insert the data into the treeview widget
+       cursor = GEMS.connection.cursor()
+       cursor.execute("SELECT * FROM Item")
+       rows = cursor.fetchall()
+       for row in rows:
+           itemTree.insert("", "end", text=row[0], values=row[0:])
+       #Centering the table
+       itemTree.place(relx=0.5, rely=0.5, anchor="center")
+
     def viewClientButtonClicked(self):
        print("Pressed: View Client")
        self.createCrudButtons()

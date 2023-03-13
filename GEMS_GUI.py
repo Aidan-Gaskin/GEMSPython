@@ -512,8 +512,8 @@ class GUI:
             butt.pack(side="top",fill="y",expand=True,padx=5,pady=5,anchor="nw")
         self.window.mainloop()
 #call this stuff within the "Main" file later when finalising - Aidan Gaskin
-gui = GUI()
-gui.createGUI()
+# gui = GUI()
+# gui.createGUI()
 
 
 

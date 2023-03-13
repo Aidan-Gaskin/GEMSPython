@@ -1,9 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-
 from GEMS import GEMS
-
-
 class GUI:
     def __init__(self):
         self.window = tk.Tk()
@@ -12,7 +9,6 @@ class GUI:
         self.crudButtons = [] #this allows the buttons to be destroyed
         self.pageNum = 0
         self.gems = GEMS()
-
 ##CREATING CRUD BUTTONS-------------------------------------------------------------------------------------------------
     def createCrudButtons(self):
         print("Creating CRUD buttons")
@@ -21,25 +17,25 @@ class GUI:
                 but.destroy()
         createButton = tk.Button(self.window, text="Create", font=("Ariel", 20), width=12, height=4,
                                  command=self.createButtonClicked)
-        updateButton = tk.Button(self.window, text="Update", font=("Ariel", 20), width=12)
+        updateButton = tk.Button(self.window, text="Update", font=("Ariel", 20), width=12,
+                                 command=self.updateButtonClicked)
         deleteButton = tk.Button(self.window, text="Delete", font=("Ariel", 20), width=12)
         refreshButton = tk.Button(self.window, text="Refresh", font=("Ariel", 20), width=12,
                                   command=self.refreshButtonClicked)
         self.crudButtons = [createButton, updateButton, deleteButton, refreshButton]
         for but in self.crudButtons:
             but.pack(side="left", fill="both", expand=True, padx=5, pady=5, anchor="nw")
-
 ##VIEW BUTTON HANDLERS--------------------------------------------------------------------------------------------------
     def viewItemButtonClicked(self):
        print("Pressed: View Item")
        self.createCrudButtons()
        #creating a variable to check which page we clicked on to manage the crud operations
        self.pageNum = 1
-       # Delete the existing treeview widget
+       #delete any Treeviews that exists before the method call
        for widget in self.window.winfo_children():
            if isinstance(widget, ttk.Treeview):
                widget.destroy()
-       # Create a new treeview widget and add columns
+       #Creating the Treeview component
        itemTree = ttk.Treeview(self.window)
        itemTree["columns"] = ("description", "supplierID", "buyPrice", "sellPrice")
        itemTree.heading("#0", text="Item ID")
@@ -52,25 +48,21 @@ class GUI:
        itemTree.column("buyPrice", width=100)
        itemTree.heading("sellPrice", text="Sell Price")
        itemTree.column("sellPrice", width=100)
-       # Query the "Item" table and insert the data into the treeview widget
+       #Get SQL table data and transfer into component
        cursor = GEMS.connection.cursor()
        cursor.execute("SELECT * FROM Item")
        rows = cursor.fetchall()
        for row in rows:
            itemTree.insert("", "end", text=row[0], values=row[1:])
-       # Add the treeview widget to the GUI window and center it
+       #Center the table
        itemTree.place(relx=0.5, rely=0.5, anchor="center")
-
-
     def viewClientButtonClicked(self):
        print("Pressed: View Client")
        self.createCrudButtons()
        self.pageNum = 2
-       # Delete the existing treeview widget
        for widget in self.window.winfo_children():
            if isinstance(widget, ttk.Treeview):
                widget.destroy()
-       # Create a treeview widget and add columns
        itemTree = ttk.Treeview(self.window)
        itemTree["columns"] = ("companyName", "address", "accountManagerID", "contactForename",
                               "contactSurname", "contactEmail", "contactPhoneNo")
@@ -90,25 +82,19 @@ class GUI:
        itemTree.column("contactEmail", width=100)
        itemTree.heading("contactPhoneNo", text="contactPhoneNo")
        itemTree.column("contactPhoneNo", width=100)
-
-       # Query the "Item" table and insert the data into the treeview widget
        cursor = GEMS.connection.cursor()
        cursor.execute("SELECT * FROM Client")
        rows = cursor.fetchall()
        for row in rows:
            itemTree.insert("", "end", text=row[0], values=row[1:])
-       #Centering the table
        itemTree.place(relx=0.5, rely=0.5, anchor="center")
-
     def viewAccountManagerButtonClicked(self):
        print("Pressed: View AccountManager")
        self.createCrudButtons()
        self.pageNum = 3
-       # Delete the existing treeview widget
        for widget in self.window.winfo_children():
            if isinstance(widget, ttk.Treeview):
                widget.destroy()
-       # Create a treeview widget and add columns
        itemTree = ttk.Treeview(self.window)
        itemTree["columns"] = ("forename", "surname", "phoneNo")
        itemTree.heading("#0", text="accountManID")
@@ -119,24 +105,19 @@ class GUI:
        itemTree.column("surname", width=100)
        itemTree.heading("phoneNo", text="phoneNo")
        itemTree.column("phoneNo", width=100)
-       # Query the "Item" table and insert the data into the treeview widget
        cursor = GEMS.connection.cursor()
        cursor.execute("SELECT * FROM AccountManager")
        rows = cursor.fetchall()
        for row in rows:
            itemTree.insert("", "end", text=row[0], values=row[1:])
-       # Centering the table
        itemTree.place(relx=0.5, rely=0.5, anchor="center")
-
     def viewAdministratorButtonClicked(self):
        print("Pressed: View Administrator")
        self.createCrudButtons()
        self.pageNum = 4
-       # Delete the existing treeview widget
        for widget in self.window.winfo_children():
            if isinstance(widget, ttk.Treeview):
                widget.destroy()
-       # Create a treeview widget and add columns
        itemTree = ttk.Treeview(self.window)
        itemTree["columns"] = ("forename", "surname", "phoneNo")
        itemTree.heading("#0", text="adminID")
@@ -147,24 +128,19 @@ class GUI:
        itemTree.column("surname", width=100)
        itemTree.heading("phoneNo", text="phoneNo")
        itemTree.column("phoneNo", width=100)
-       # Query the "Item" table and insert the data into the treeview widget
        cursor = GEMS.connection.cursor()
        cursor.execute("SELECT * FROM Administrator")
        rows = cursor.fetchall()
        for row in rows:
            itemTree.insert("", "end", text=row[0], values=row[1:])
-       # Centering the table
        itemTree.place(relx=0.5, rely=0.5, anchor="center")
-
     def viewOrderButtonClicked(self):
        print("Pressed: View Order")
        self.createCrudButtons()
        self.pageNum = 5
-       # Delete the existing treeview widget
        for widget in self.window.winfo_children():
            if isinstance(widget, ttk.Treeview):
                widget.destroy()
-       # Create a treeview widget and add columns
        itemTree = ttk.Treeview(self.window)
        itemTree["columns"] = ("clientID", "accountManID", "adminID", "itemID",
                               "quantity", "supplierID", "deliveryAddress")
@@ -184,24 +160,19 @@ class GUI:
        itemTree.column("supplierID", width=100)
        itemTree.heading("deliveryAddress", text="deliveryAddress")
        itemTree.column("deliveryAddress", width=100)
-
-       # Query the "Item" table and insert the data into the treeview widget
        cursor = GEMS.connection.cursor()
        cursor.execute("SELECT * FROM Client")
        rows = cursor.fetchall()
        for row in rows:
            itemTree.insert("", "end", text=row[0], values=row[1:])
-       #Centering the table
        itemTree.place(relx=0.5, rely=0.5, anchor="center")
     def viewSupplierButtonClicked(self):
        print("Pressed: View Supplier")
        self.createCrudButtons()
        self.pageNum = 6
-       # Delete the existing treeview widget
        for widget in self.window.winfo_children():
            if isinstance(widget, ttk.Treeview):
                widget.destroy()
-       # Create a treeview widget and add columns
        itemTree = ttk.Treeview(self.window)
        itemTree["columns"] = ("companyName", "address", "contactForename",
                               "contactSurname", "contactEmail", "contactPhoneNo")
@@ -219,14 +190,11 @@ class GUI:
        itemTree.column("contactEmail", width=100)
        itemTree.heading("contactPhoneNo", text="contactPhoneNo")
        itemTree.column("contactPhoneNo", width=100)
-
-       # Query the "Item" table and insert the data into the treeview widget
        cursor = GEMS.connection.cursor()
        cursor.execute("SELECT * FROM Client")
        rows = cursor.fetchall()
        for row in rows:
            itemTree.insert("", "end", text=row[0], values=row[1:])
-       #Centering the table
        itemTree.place(relx=0.5, rely=0.5, anchor="center")
 
 ##CREATE BUTTON HANDLER-------------------------------------------------------------------------------------------------
@@ -255,7 +223,6 @@ class GUI:
             sellPrice_label.grid(row=3, column=0)
             sellPrice_input.grid(row=3, column=1)
             def ok_button_clicked():
-                #************HERE IS WHERE I WILL CALL THE DATABASE METHODS WITH GIVEN INPUT***************
                 self.gems.createItemObject(description_input.get(), supplierID_input.get(),
                                       buyPrice_input.get(), sellPrice_input.get())
                 create_window.destroy()
@@ -434,7 +401,6 @@ class GUI:
             phoneNo_label.grid(row=5, column=0)
             phoneNo_input.grid(row=5, column=1)
             def ok_button_clicked():
-                # ************HERE IS WHERE I WILL CALL THE DATABASE METHODS WITH GIVEN INPUT***************
                 self.gems.createSupplierObject(companyName_input.get(), address_input.get(), forename_input.get(),
                                                surname_input.get(), email_input.get(), phoneNo_input.get())
                 create_window.destroy()
@@ -461,6 +427,43 @@ class GUI:
         elif self.pageNum == 6:
             self.viewSupplierButtonClicked()
     ##CREATING INITIAL GUI VIEW---------------------------------------------------------------------------------------------
+    def updateButtonClicked(self):
+        print("update button clicked")
+        update_window = tk.Toplevel(self.window)
+        update_window.title("Update Entry")
+
+        # LABELS FOR INPUT
+        tableToUpdate_label = tk.Label(update_window, text="Table To Update:")
+        fieldToUpdate_label = tk.Label(update_window, text="The Field To Update:")
+        newValue_label = tk.Label(update_window, text="The New Value:")
+        firstField_label = tk.Label(update_window, text="First Field (<table>ID):")
+        firstFieldValue_lable = tk.Label(update_window, text="First Field Value (<table>ID = ?:")
+        # INPUT BOXES
+        tableToUpdate_input = tk.Entry(update_window)
+        fieldToUpdate_input = tk.Entry(update_window)
+        newValue_input = tk.Entry(update_window)
+        firstField_input = tk.Entry(update_window)
+        firstFieldValue_input = tk.Entry(update_window)
+
+        tableToUpdate_label.grid(row=0, column=0)
+        tableToUpdate_input.grid(row=0, column=1)
+        fieldToUpdate_label.grid(row=1, column=0)
+        fieldToUpdate_input.grid(row=1, column=1)
+        newValue_label.grid(row=2, column=0)
+        newValue_input.grid(row=2, column=1)
+        firstField_label.grid(row=3, column=0)
+        firstField_input.grid(row=3, column=1)
+        firstFieldValue_lable.grid(row=4, column=0)
+        firstFieldValue_input.grid(row=4, column=1)
+        def ok_button_clicked():
+            self.gems.updateEntry(tableToUpdate_input.get(), fieldToUpdate_input.get(), newValue_input.get(),
+                                  firstField_input.get(), firstFieldValue_input.get())
+            update_window.destroy()
+        ok_button = tk.Button(update_window, text="OK", command=ok_button_clicked)
+        cancel_button = tk.Button(update_window, text="Cancel", command=update_window.destroy)
+        ok_button.grid(row=5, column=0)
+        cancel_button.grid(row=5, column=1)
+    ##CREATING INITIAL GUI VIEW---------------------------------------------------------------------------------------------
     def createGUI(self):
         ##creating the buttons & adding handlers.
         viewItemButton = tk.Button(self.window,text="View: \nItem",font=("Ariel",20),width=12,
@@ -475,7 +478,6 @@ class GUI:
                                     command=self.viewOrderButtonClicked)
         viewSupplierButton = tk.Button(self.window,text="View: \nSupplier",font=("Ariel",20),width=12,
                                        command=self.viewSupplierButtonClicked)
-
         ##Creating list of the buttons for looping through later on
         buttonList = [viewItemButton,viewClientButton,viewAccountManagerButton,
                       viewAdministratorButton, viewOrderButton, viewSupplierButton]
@@ -483,8 +485,6 @@ class GUI:
         for butt in buttonList:
             butt.pack(side="top",fill="y",expand=True,padx=5,pady=5,anchor="nw")
         self.window.mainloop()
-
-
 #call this stuff within the "Main" file later when finalising - Aidan Gaskin
 gui = GUI()
 gui.createGUI()

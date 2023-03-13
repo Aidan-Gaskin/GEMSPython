@@ -29,21 +29,28 @@ class GUI:
     def viewItemButtonClicked(self):
        print("Pressed: View Item")
        self.createCrudButtons()
+       #creating a variable to check which page we clicked on to manage the crud operations
+       pageNum = 1
     def viewClientButtonClicked(self):
        print("Pressed: View Client")
        self.createCrudButtons()
+       pageNum = 2
     def viewAccountManagerButtonClicked(self):
        print("Pressed: View AccountManager")
        self.createCrudButtons()
+       pageNum = 3
     def viewAdministratorButtonClicked(self):
        print("Pressed: View Administrator")
        self.createCrudButtons()
+       pageNum = 4
     def viewOrderButtonClicked(self):
        print("Pressed: View Order")
        self.createCrudButtons()
+       pageNum = 5
     def viewSupplierButtonClicked(self):
        print("Pressed: View Supplier")
        self.createCrudButtons()
+       pageNum = 6
 
 ##CREATE BUTTON HANDLER-------------------------------------------------------------------------------------------------
     def createButtonClicked(self):
@@ -72,6 +79,16 @@ class GUI:
         sellPrice_input.pack()
         ok_button.pack()
         cancel_button.pack()
+
+
+
+
+
+
+
+
+
+
 
     ##CREATING INITIAL GUI VIEW---------------------------------------------------------------------------------------------
     def createGUI(self):

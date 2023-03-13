@@ -9,6 +9,7 @@ class GUI:
         self.window.title("G.E.M.S - Gaskin Enterprise Management System")
         self.window.geometry("900x600")
         self.crudButtons = [] #this allows the buttons to be destroyed
+        self.pageNum = 0
 
 ##CREATING CRUD BUTTONS-------------------------------------------------------------------------------------------------
     def createCrudButtons(self):
@@ -30,55 +31,86 @@ class GUI:
        print("Pressed: View Item")
        self.createCrudButtons()
        #creating a variable to check which page we clicked on to manage the crud operations
-       pageNum = 1
+       self.pageNum = 1
     def viewClientButtonClicked(self):
        print("Pressed: View Client")
        self.createCrudButtons()
-       pageNum = 2
+       self.pageNum = 2
     def viewAccountManagerButtonClicked(self):
        print("Pressed: View AccountManager")
        self.createCrudButtons()
-       pageNum = 3
+       self.pageNum = 3
     def viewAdministratorButtonClicked(self):
        print("Pressed: View Administrator")
        self.createCrudButtons()
-       pageNum = 4
+       self.pageNum = 4
     def viewOrderButtonClicked(self):
        print("Pressed: View Order")
        self.createCrudButtons()
-       pageNum = 5
+       self.pageNum = 5
     def viewSupplierButtonClicked(self):
        print("Pressed: View Supplier")
        self.createCrudButtons()
-       pageNum = 6
+       self.pageNum = 6
 
 ##CREATE BUTTON HANDLER-------------------------------------------------------------------------------------------------
     def createButtonClicked(self):
-        print("create button pressed")
-        create_window = tk.Toplevel(self.window)
-        create_window.title("Create Item")
-        #
-        description_input = tk.Entry(create_window)
-        supplierID_input = tk.Entry(create_window)
-        buyPrice_input = tk.Entry(create_window)
-        sellPrice_input = tk.Entry(create_window)
-        #
-        def ok_button_clicked():
-            #HERE IS WHERE I WILL CALL THE DATABASE METHODS WITH GIVEN INPUT
-            input_data = [description_input.get(), supplierID_input.get(), buyPrice_input.get(), sellPrice_input.get()]
-            print("User entered:", input_data)
-            create_window.destroy()
+        if self.pageNum == 1:
+            print("create button pressed")
+            create_window = tk.Toplevel(self.window)
+            create_window.title("Create Item")
             #
-        ok_button = tk.Button(create_window, text="OK", command=ok_button_clicked)
-        #
-        cancel_button = tk.Button(create_window, text="Cancel", command=create_window.destroy)
-        #
-        description_input.pack()
-        supplierID_input.pack()
-        buyPrice_input.pack()
-        sellPrice_input.pack()
-        ok_button.pack()
-        cancel_button.pack()
+            description_input = tk.Entry(create_window)
+            supplierID_input = tk.Entry(create_window)
+            buyPrice_input = tk.Entry(create_window)
+            sellPrice_input = tk.Entry(create_window)
+
+            #
+            def ok_button_clicked():
+                # HERE IS WHERE I WILL CALL THE DATABASE METHODS WITH GIVEN INPUT
+                input_data = [description_input.get(), supplierID_input.get(), buyPrice_input.get(),
+                              sellPrice_input.get()]
+                print("User entered:", input_data)
+                create_window.destroy()
+                #
+
+            ok_button = tk.Button(create_window, text="OK", command=ok_button_clicked)
+            #
+            cancel_button = tk.Button(create_window, text="Cancel", command=create_window.destroy)
+            #
+            description_input.pack()
+            supplierID_input.pack()
+            buyPrice_input.pack()
+            sellPrice_input.pack()
+            ok_button.pack()
+            cancel_button.pack()
+        elif self.pageNum == 2:
+            print("stfu")
+        # print("create button pressed")
+        # create_window = tk.Toplevel(self.window)
+        # create_window.title("Create Item")
+        # #
+        # description_input = tk.Entry(create_window)
+        # supplierID_input = tk.Entry(create_window)
+        # buyPrice_input = tk.Entry(create_window)
+        # sellPrice_input = tk.Entry(create_window)
+        # #
+        # def ok_button_clicked():
+        #     #HERE IS WHERE I WILL CALL THE DATABASE METHODS WITH GIVEN INPUT
+        #     input_data = [description_input.get(), supplierID_input.get(), buyPrice_input.get(), sellPrice_input.get()]
+        #     print("User entered:", input_data)
+        #     create_window.destroy()
+        #     #
+        # ok_button = tk.Button(create_window, text="OK", command=ok_button_clicked)
+        # #
+        # cancel_button = tk.Button(create_window, text="Cancel", command=create_window.destroy)
+        # #
+        # description_input.pack()
+        # supplierID_input.pack()
+        # buyPrice_input.pack()
+        # sellPrice_input.pack()
+        # ok_button.pack()
+        # cancel_button.pack()
 
 
 
